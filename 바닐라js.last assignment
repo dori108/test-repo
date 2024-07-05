@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>실시간 시계, 로그인, 투두리스트, 랜덤 배경 이미지, 날씨와 위치</title>
+  <style>
+    /* 시계 스타일 */
+    #clock {
+      font-size: 48px;
+      text-align: center;
+      margin-top: 200px;
+    }
+
+    /* 로그인 폼 스타일 */
+    .login-form {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 200px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+    }
+
+    /* 투두리스트 스타일 */
+    .todo-form {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    .todo-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .todo-form button {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .todo-list {
+      margin-top: 20px;
+    }
+
+    .todo-item {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+
+  <div class="login-form">
+    <input type="text" id="username" placeholder="사용자명">
+    <input type="password" id="password" placeholder="비밀번호">
+    <button onclick="login()">로그인</button>
+  </div>
+
+  <div class="todo-form">
+    <input type="text" id="taskInput" placeholder="할 일 추가">
+    <button onclick="addTask()">추가</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    // 실시간 시계 업데이트
+    function updateClock() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      var seconds = now.getSeconds();
+
+      var timeString = hours + ':' + addLeadingZero(minutes) + ':' + addLeadingZero(seconds);
+      document.getElementById('clock').textContent = timeString;
+    }
+
+    // 앞에 0 추가
+    function addLeadingZero(number) {
+      return (number < 10 ? '0' : '') + number;
+    }
+
+    // 로그인 기능
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+
+      alert('로그인 되었습니다!');
+    }
+
+    // 투두리스트 기능
+    function addTask() {
+      var taskInput = document.getElementById('taskInput');
+      var taskList = document.getElementById('taskList');
+
+      var task = taskInput.value;
+      if (task.trim() !== '') {
+        var
